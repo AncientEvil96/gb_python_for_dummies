@@ -11,10 +11,14 @@
 
 my_rating = input('Enter the rating separated by "," : ').split(',')
 
+my_rating = [int(i) for i in my_rating]
+
 while True:
     my_rating.append(int(input('Write element: ')))
     answer = input('Introduce more? y/n ')
     if answer == 'n' or answer == 'no':
         break
 
+my_rating.sort(reverse=True)
 
+print(my_rating)
