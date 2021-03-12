@@ -12,11 +12,13 @@ user_list = []
 while True:
     user_list.extend(input('enter number across " ", if exit enter "q": ').split())
     ext_q = user_list.count('q')
-    if ext_q>0:
+    if ext_q > 0:
         index_q = user_list.index('q')
         user_list = user_list[:index_q]
+        user_list = [int(i) for i in user_list]
         break
     else:
+        user_list = [int(i) for i in user_list]
         print(sum(user_list))
 
 print(sum(user_list))
