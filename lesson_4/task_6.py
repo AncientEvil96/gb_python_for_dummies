@@ -7,3 +7,26 @@
 # Например, в первом задании выводим целые числа, начиная с 3.
 # При достижении числа 10 — завершаем цикл.
 # Вторым пунктом необходимо предусмотреть условие, при котором повторение элементов списка прекратится.
+
+from itertools import count, cycle
+
+for try_ in count(1):
+    try:
+        start_n = int(input('Введите целое стартовое число '))
+        exit_n = int(input('Введите целое конечное число '))
+        break
+    except ValueError as err:
+        print(err)
+
+for i in count(start_n):
+    print(i)
+    if i > exit_n:
+        break
+
+my_list = [i for i in range(1, 5)]
+counter = 0
+for i in cycle(my_list):
+    print(i)
+    counter += 1
+    if counter == exit_n * len(my_list):
+        break
