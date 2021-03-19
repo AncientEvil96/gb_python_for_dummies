@@ -34,7 +34,10 @@ with open('test_1.txt', 'w+', encoding='utf-8') as my_f:
         if profit > 0:
             avg_list.append(profit)
 
-avg_ = mean(avg_list)
+avg_ = 0
+if len(avg_list) > 0:
+    avg_ = mean(avg_list)
+
 list_firm = [dic_firm, {'average_profit': avg_}]
 print(list_firm)
 
