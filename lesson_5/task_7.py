@@ -14,7 +14,7 @@
 import json
 from statistics import mean
 
-with open('test_1.txt', 'w+') as my_f:
+with open('test_1.txt', 'w+', encoding='utf-8') as my_f:
     while True:
         text_ = input('Название: ')
         text_ = text_ + ' ' + input('Форма собственности: ')
@@ -38,5 +38,5 @@ avg_ = mean(avg_list)
 list_firm = [dic_firm, {'average_profit': avg_}]
 print(list_firm)
 
-with open("data_file.json", "w") as my_f:
+with open("data_file.json", "w", encoding='utf-8') as my_f:
     json.dump(list_firm, my_f)
