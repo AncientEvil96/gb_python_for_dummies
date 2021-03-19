@@ -10,3 +10,33 @@
 # Пример json-объекта:
 # [{"firm_1": 5000, "firm_2": 3000, "firm_3": 1000}, {"average_profit": 2000}]
 # Подсказка: использовать менеджер контекста.
+
+import json
+from statistics import mean
+
+with open('test_1.txt', 'w+') as my_f:
+    while True:
+        text_ = input('Название: ')
+        text_ = text_ + ' ' + input('Форма собственности: ')
+        text_ = text_ + ' ' + input('Выручка: ')
+        text_ = text_ + ' ' + input('Издержки: ')
+        my_f.write(f'{text_} \n')
+        if input('Закончить ввод? "n/н": ') in ['n', 'н']:
+            break
+
+    dic_firm = {}
+    avg_list = []
+    my_f.seek(0)
+    for line in my_f:
+        name, form, revenue, costs = line.split()
+        profit = int(revenue) - int(costs)
+        dic_firm.update({name: profit})
+        if profit > 0:
+            avg_list.append(profit)
+
+avg_ = mean(avg_list)
+list_firm = [dic_firm, {'average_profit': avg_}]
+print(list_firm)
+
+with open("data_file.json", "w") as my_f:
+    json.dump(list_firm, my_f)
