@@ -7,6 +7,19 @@
 # Например: 20м * 5000м * 25кг * 5см = 12500т
 
 class Road:
+    """
+    класс предназначен для расчета массы закупки материала асфальта
+
+    параметры для расчета полотна
+    :param length длина
+    :param width ширина
+    :param mass масса асфальта для покрытия одного кв метра дороги асфальтом, толщиной в 1 см
+    :param thickness число см толщины полотна
+
+    asphalt_masses(mass,thickness) непосредственно расчет
+
+    """
+
     def __init__(self, length, width):
         self._length = length
         self._width = width

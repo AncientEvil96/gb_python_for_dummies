@@ -11,23 +11,25 @@ import time
 
 
 class TrafficLight:
+    """
+    класс TrafficLight предназначенный для работы светофора.
+
+    :param color описаны стандарты цветов сфетофора
+
+    running для запуска
+    """
     def __init__(self):
-        self.__color = ('red', 'yellow', 'green', 'yellow')
+        self.__color = (('red', 7), ('yellow', 2), ('green', 5), ('yellow', 2))
 
     def running(self):
         print('Start..')
         counter = 0
-        for i in cycle(self.__color):
-            print(i)
-            counter += 1
-            if i == 'green':
-                time.sleep(5)
-            elif i == 'yellow':
-                time.sleep(2)
-            else:
-                time.sleep(7)
+        for color_, time_step in cycle(self.__color):
+            print(color_)
+            time.sleep(time_step)
 
-            if counter == 20:
+            counter += 1
+            if counter == 10:
                 print('Stop..')
                 break
 
