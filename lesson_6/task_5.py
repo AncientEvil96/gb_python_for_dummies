@@ -39,7 +39,8 @@ class Handle(Stationery):
 
 
 if __name__ == '__main__':
-    # otr = Stationery('Pen')
+    otr = Stationery('Pen')
+    otr.draw()
     Pen.draw('Pen')
     Pencil.draw('Pencil')
     Handle.draw('Handle')
