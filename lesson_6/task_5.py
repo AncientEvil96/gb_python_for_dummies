@@ -12,7 +12,7 @@ class Stationery:
     общий метод агрегатор параметров
 
     """
-    def __init__(self, title):
+    def __init__(self, title = None):
         self.title = title
 
     def draw(self):
