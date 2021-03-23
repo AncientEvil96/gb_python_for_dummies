@@ -12,7 +12,8 @@ class Stationery:
     общий метод агрегатор параметров
 
     """
-    def __init__(self, title = None):
+
+    def __init__(self, title=None):
         self.title = title
 
     def draw(self):
@@ -21,23 +22,24 @@ class Stationery:
 
 class Pen(Stationery):
 
-    def draw(self):
-        print('Запуск Pen.')
+     def draw(self):
+         print(f'Запуск {self.title}.')
 
 
 class Pencil(Stationery):
 
     def draw(self):
-        print('Запуск Pencil.')
+        print(f'Запуск {self.title}.')
 
 
 class Handle(Stationery):
 
     def draw(self):
-        print('Запуск Handle.')
+        print(f'Запуск {self.title}.')
 
 
 if __name__ == '__main__':
+    # otr = Stationery('Pen')
     Pen.draw('Pen')
     Pencil.draw('Pencil')
     Handle.draw('Handle')
