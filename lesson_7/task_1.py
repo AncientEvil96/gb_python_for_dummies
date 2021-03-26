@@ -37,4 +37,4 @@ class Matrix:
 
 if __name__ == '__main__':
     matrix1 = Matrix([[1, 2, 5], [3, 4]])
-    print(matrix1.matrix, '\n')
+    print('\n'.join(map(str, matrix1.matrix)))
