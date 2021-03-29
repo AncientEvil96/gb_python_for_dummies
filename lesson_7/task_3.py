@@ -21,3 +21,48 @@
 # Тогда метод make_order() вернет строку: *****\n*****\n**.
 # Или, количество ячеек клетки равняется 15, количество ячеек в ряду — 5.
 # Тогда метод make_order() вернет строку: *****\n*****\n*****.
+
+class Сage:
+    def __init__(self, count):
+        try:
+            self._count = int(count)
+        except TypeError:
+            print('Error type count, need "int"')
+
+    def __add__(self, other):
+        self._count = self._count // other._count
+        return self
+
+    def __sub__(self, other):
+        if self._count > other._count and other.__class__.__name__ == 'Сage':
+            self._count = self._count - other._count
+            return self
+        else:
+            return 'Error sub cage'
+
+    def __mul__(self, other):
+        self._count = self._count * other._count
+        return self
+
+    def __truediv__(self, other):
+        self._count = self._count // other._count
+        return self
+
+    def make_order(self, count_line):
+        line, tail = self._count // count_line, self._count % count_line
+        # return '\n'.join(['*' * count_line] * line + (['*' * tail] if tail > 0 else []))
+        return '\n'.join(['*' * count_line for _ in range(0, line)] + ['*' * tail])
+
+
+if __name__ == '__main__':
+    cage_1 = Сage(2)
+    cage_2 = Сage(6)
+
+    print(f'sum {cage_1 + cage_2}')
+    print(f'difference {cage_1 - cage_2}')
+    print(f'composition {cage_1 * cage_2}')
+    print(f'quotient {cage_1 / cage_2}')
+
+    big_cage = cage_1 * cage_2
+    print(big_cage.make_order(5))
+
