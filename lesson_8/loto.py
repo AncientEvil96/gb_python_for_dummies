@@ -3,7 +3,7 @@
 
 Правила игры в лото.
 
-Игра ведется с помощью спе циальных карточек, на которых отмечены числа,
+Игра ведется с помощью специальных карточек, на которых отмечены числа,
 и фишек (бочонков) с цифрами.
 
 Количество бочонков — 90 штук (с цифрами от 1 до 90).
@@ -55,3 +55,39 @@
 модуль random: http://docs.python.org/3/library/random.html
 
 """
+
+import random
+
+
+class Gamers:
+    def __init__(self, name: str, surname: str):
+        self.name = name
+        self.surname = surname
+
+    def __str__(self):
+        return f'{self._name} {self._surname}'
+
+
+class Game(Gamers):
+    def __init__(self, name, surname):
+        super.__init__(self, name, surname)
+        self.__line = 3
+        self.__column = 5
+        self.__max_column = 9
+
+    def new_cart(self):
+        self.__cart = [[random.randint(1, 90) for _ in range(0, self.__column)] for _ in range(0, self.__line)]
+        return self
+
+    def start(self):
+        pass
+
+    def __str__(self):
+        return f'{self.__cart}'
+
+
+game = Game('Ivan', 'Ivanov')
+
+print(game)
+
+# print(game.__dict__)
