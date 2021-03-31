@@ -97,9 +97,14 @@ class Game(Gamers):
     def start(self):
         pass
 
+    @staticmethod
+    def cart_create_print(data):
+        cart = '\n'.join(
+            [''.join([str(i).replace('0', '').rjust(3, ' ') for i in line]) for line in data])
+        return cart
+
     def __str__(self):
-        cart_1 = '\n'.join(['\t'.join(map(str, i)) for i in self.__user_cart])
-        return f'Новый бочонок: {1} (осталось {1}) \n------ Ваша карточка -----\n{cart_1}\n--------------------------'
+        return f'Новый бочонок: {1} (осталось {1}) \n------ Ваша карточка -----\n{Game.cart_create_print(self.__user_cart)}\n--------------------------'
 
 
 game = Game('Ivan', 'Ivanov')
