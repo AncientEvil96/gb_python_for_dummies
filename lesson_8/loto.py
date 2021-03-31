@@ -96,9 +96,9 @@ class Game(Gamers):
 
     def start(self):
         answer = input(f'Новый бочонок: {1} (осталось {1}) \n-------' \
-                       f' Ваша карточка ------\n{Game.cart_create_print(self.__user_cart)}\n---------------------------' \
-                       f'\n--- Карточка компьютера ---\n{Game.cart_create_print(self.__pc_cart)}\n----------------' \
-                       f'-----------\n Зачеркнуть цифру? (y/n)')
+                       f' Ваша карточка ------\n{Game.cart_create_print(self.__user_cart)}\n----------------------'
+                       f'-----\n--- Карточка компьютера ---\n{Game.cart_create_print(self.__pc_cart)}\n-----------'
+                       f'----------------\n Зачеркнуть цифру? (y/n)')
 
     @staticmethod
     def cart_create_print(data):
