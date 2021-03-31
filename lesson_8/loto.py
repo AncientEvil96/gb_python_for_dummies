@@ -104,7 +104,9 @@ class Game(Gamers):
         return cart
 
     def __str__(self):
-        return f'Новый бочонок: {1} (осталось {1}) \n------ Ваша карточка -----\n{Game.cart_create_print(self.__user_cart)}\n--------------------------'
+        return f'Новый бочонок: {1} (осталось {1}) \n-------' \
+               f' Ваша карточка ------\n{Game.cart_create_print(self.__user_cart)}\n---------------------------' \
+               f'\n--- Карточка компьютера ---\n{Game.cart_create_print(self.__pc_cart)}\n---------------------------'
 
 
 game = Game('Ivan', 'Ivanov')
