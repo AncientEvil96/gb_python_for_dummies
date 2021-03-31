@@ -98,13 +98,8 @@ class Game(Gamers):
         pass
 
     def __str__(self):
-        cart_1 = ['\n'.join(['\t'.join(map(str, i)) for i in self.__user_cart])]
-        return f"""
-                Новый бочонок: {1} (осталось {1})
-                ------ Ваша карточка -----
-                {cart_1}
-                --------------------------
-                """
+        cart_1 = '\n'.join(['\t'.join(map(str, i)) for i in self.__user_cart])
+        return f'Новый бочонок: {1} (осталось {1}) \n------ Ваша карточка -----\n{cart_1}\n--------------------------'
 
 
 game = Game('Ivan', 'Ivanov')
