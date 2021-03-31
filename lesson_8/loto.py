@@ -74,25 +74,37 @@ class Game(Gamers):
         self.__line = 3
         self.__column = 5
         self.__max_column = 9
-        self.new_cart()
+        self.__user_cart = self.__new_cart()
+        self.__pc_cart = self.__new_cart()
 
-    def new_cart(self):
+    def __new_cart(self):
+        new_cart_random = []
+        while True:
+            new_random = random.randint(1, 90)
+            if new_cart_random.count(new_random) == 0:
+                new_cart_random.append(new_random)
 
+            if len(new_cart_random) == self.__column * self.__max_column:
+                break
 
-            new_cart_random =
-        self.__cart_list = [[random.randint(1, 90) for _ in range(0, self.__column)] for _ in range(0, self.__line)]
-        for line in self.__cart_list:
+        __cart_list = [[new_cart_random.pop() for _ in range(0, self.__column)] for _ in range(0, self.__line)]
+        for line in __cart_list:
             line.sort()
             zero_index = [random.randint(1, self.__max_column) for _ in range(0, self.__max_column - self.__column)]
             line = [line.insert(i, 0) for i in zero_index]
             print(line)
-        return self
+        return __cart_list
 
     def start(self):
         pass
 
     def __str__(self):
-        return f'{self.__cart_list}'
+        return f"""
+                Новый бочонок: {1} (осталось {1})
+                ------ Ваша карточка -----
+                {'\n'.join(['\t'.join([map(str, i) for i in line]) for line in self.__user_cart])}
+                --------------------------
+                """
 
 
 game = Game('Ivan', 'Ivanov')
