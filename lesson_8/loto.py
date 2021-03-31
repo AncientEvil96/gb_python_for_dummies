@@ -95,7 +95,10 @@ class Game(Gamers):
         return __cart_list
 
     def start(self):
-        pass
+        answer = input(f'Новый бочонок: {1} (осталось {1}) \n-------' \
+                       f' Ваша карточка ------\n{Game.cart_create_print(self.__user_cart)}\n---------------------------' \
+                       f'\n--- Карточка компьютера ---\n{Game.cart_create_print(self.__pc_cart)}\n----------------' \
+                       f'-----------\n Зачеркнуть цифру? (y/n)')
 
     @staticmethod
     def cart_create_print(data):
@@ -103,14 +106,12 @@ class Game(Gamers):
             [''.join([str(i).replace('0', '').rjust(3, ' ') for i in line]) for line in data])
         return cart
 
-    def __str__(self):
-        return f'Новый бочонок: {1} (осталось {1}) \n-------' \
-               f' Ваша карточка ------\n{Game.cart_create_print(self.__user_cart)}\n---------------------------' \
-               f'\n--- Карточка компьютера ---\n{Game.cart_create_print(self.__pc_cart)}\n---------------------------'
+    # def __str__(self):
+    #
 
 
 game = Game('Ivan', 'Ivanov')
-
-print(game)
+game.start()
+# print(game)
 
 # print(game.__dict__)
