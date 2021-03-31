@@ -92,14 +92,13 @@ class Game(Gamers):
             line.sort()
             zero_index = [random.randint(1, self.__max_column) for _ in range(0, self.__max_column - self.__column)]
             line = [line.insert(i, 0) for i in zero_index]
-            print(line)
         return __cart_list
 
     def start(self):
         pass
 
     def __str__(self):
-        cart_1 = {'\n'.join(['\t'.join(map(str, i)) for i in self.__user_cart])}
+        cart_1 = ['\n'.join(['\t'.join(map(str, i)) for i in self.__user_cart])]
         return f"""
                 Новый бочонок: {1} (осталось {1})
                 ------ Ваша карточка -----
