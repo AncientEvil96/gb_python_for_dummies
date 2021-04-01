@@ -67,6 +67,9 @@ class Gamers:
     def __str__(self):
         return f'{self._name} {self._surname}'
 
+    def ful_name(self):
+        return f'{self._name} {self._surname}'
+
 
 class Game(Gamers):
     def __init__(self, name, surname):
@@ -78,36 +81,73 @@ class Game(Gamers):
         self.__pc_cart = self.__new_cart()
 
     def __new_cart(self):
-        new_cart_random = []
-        while True:
-            new_random = random.randint(1, 90)
-            if new_cart_random.count(new_random) == 0:
-                new_cart_random.append(new_random)
+        # new_cart_random = []
+        # while True:
+        #     new_random = random.randint(1, 90)
+        #     if new_cart_random.count(new_random) == 0:
+        #         new_cart_random.append(new_random)
+        #
+        #     if len(new_cart_random) == self.__column * self.__max_column:
+        #         break
 
-            if len(new_cart_random) == self.__column * self.__max_column:
-                break
+        new_cart_random = random.sample(range(1, 90), self.__column * self.__line)
 
         __cart_list = [[new_cart_random.pop() for _ in range(0, self.__column)] for _ in range(0, self.__line)]
         for line in __cart_list:
             line.sort()
             zero_index = [random.randint(1, self.__max_column) for _ in range(0, self.__max_column - self.__column)]
-            line = [line.insert(i, 0) for i in zero_index]
+            line = [line.insert(i, '') for i in zero_index]
         return __cart_list
 
     def start(self):
-        answer = input(f'Новый бочонок: {1} (осталось {1}) \n-------' \
-                       f' Ваша карточка ------\n{Game.cart_create_print(self.__user_cart)}\n----------------------'
-                       f'-----\n--- Карточка компьютера ---\n{Game.cart_create_print(self.__pc_cart)}\n-----------'
-                       f'----------------\n Зачеркнуть цифру? (y/n)')
+        range_barrel = [i for i in range(1, 91)]
+        while True:
+            barrel = random.choice(range_barrel)
+            range_barrel.remove(barrel)
+            # answer = input\
+            answer = input(f'Новый бочонок: {barrel} (осталось {len(range_barrel)}) \n-------' \
+                           f' Ваша карточка ------\n{Game.cart_create_print(self.__user_cart)}\n----------------------'
+                           f'-----\n--- Карточка компьютера ---\n{Game.cart_create_print(self.__pc_cart)}\n-----------'
+                           f'----------------\n Зачеркнуть цифру? (y/n)')
+
+            leave = False
+            for line in self.__user_cart:
+                if line.count(barrel) > 0 and answer == 'y':
+                    line[line.index(barrel)] = '--'
+                    break
+                elif line.count(barrel) > 0 and answer == 'n':
+                    print(f'{self.ful_name()}, lost!')
+                    leave = True
+                    break
+
+            for line in self.__pc_cart:
+                if line.count(barrel) > 0:
+                    line[line.index(barrel)] = '--'
+                    break
+
+            if leave:
+                break
+
+            pc_cart_el = []
+            pc_cart_el = [pc_cart_el + [i for i in line if i not in ['', '--']] for line in self.__pc_cart]
+            user_cart_el = []
+            user_cart_el = [user_cart_el + [i for i in line if i not in ['', '--']] for line in self.__user_cart]
+
+            if len(range_barrel) == 0:
+                print('bag, contact the administrator')
+                break
+            elif len(pc_cart_el) == 0:
+                print('pc, win!')
+                break
+            elif len(user_cart_el) == 0:
+                print(f'{self.ful_name()}, win')
+                break
 
     @staticmethod
     def cart_create_print(data):
         cart = '\n'.join(
-            [''.join([str(i).replace('0', '').rjust(3, ' ') for i in line]) for line in data])
+            [''.join([str(i).rjust(3, ' ') for i in line]) for line in data])
         return cart
-
-    # def __str__(self):
-    #
 
 
 game = Game('Ivan', 'Ivanov')
