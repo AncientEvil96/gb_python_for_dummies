@@ -97,7 +97,7 @@ class Game(Gamers):
             barrel = random.choice(range_barrel)
             range_barrel.remove(barrel)
 
-            answer = input(f'Новый бочонок: {barrel} (осталось {len(range_barrel)}) \n-------' \
+            answer = input(f'Новый бочонок: {barrel} (осталось {len(range_barrel)}) \n-------'
                            f' Ваша карточка ------\n{Game.cart_create_print(self.__user_cart)}\n----------------------'
                            f'-----\n--- Карточка компьютера ---\n{Game.cart_create_print(self.__pc_cart)}\n-----------'
                            f'----------------\n Зачеркнуть цифру? (y/n)')
