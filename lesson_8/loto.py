@@ -81,15 +81,6 @@ class Game(Gamers):
         self.__pc_cart = self.__new_cart()
 
     def __new_cart(self):
-        # new_cart_random = []
-        # while True:
-        #     new_random = random.randint(1, 90)
-        #     if new_cart_random.count(new_random) == 0:
-        #         new_cart_random.append(new_random)
-        #
-        #     if len(new_cart_random) == self.__column * self.__max_column:
-        #         break
-
         new_cart_random = random.sample(range(1, 90), self.__column * self.__line)
 
         __cart_list = [[new_cart_random.pop() for _ in range(0, self.__column)] for _ in range(0, self.__line)]
@@ -104,18 +95,21 @@ class Game(Gamers):
         while True:
             barrel = random.choice(range_barrel)
             range_barrel.remove(barrel)
-            # answer = input\
+
             answer = input(f'Новый бочонок: {barrel} (осталось {len(range_barrel)}) \n-------' \
                            f' Ваша карточка ------\n{Game.cart_create_print(self.__user_cart)}\n----------------------'
                            f'-----\n--- Карточка компьютера ---\n{Game.cart_create_print(self.__pc_cart)}\n-----------'
                            f'----------------\n Зачеркнуть цифру? (y/n)')
+
+            while answer not in ['y', 'n']:
+                answer = input('Неправильно введен вариант ответа, введите еще раз: ')
 
             leave = False
             for line in self.__user_cart:
                 if line.count(barrel) > 0 and answer == 'y':
                     line[line.index(barrel)] = '--'
                     break
-                elif line.count(barrel) > 0 and answer == 'n':
+                elif (line.count(barrel) > 0 and answer == 'n') or (line.count(barrel) == 0 and answer == 'y'):
                     print(f'{self.ful_name()}, lost!')
                     leave = True
                     break
@@ -152,6 +146,3 @@ class Game(Gamers):
 
 game = Game('Ivan', 'Ivanov')
 game.start()
-# print(game)
-
-# print(game.__dict__)
