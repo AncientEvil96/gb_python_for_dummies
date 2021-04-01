@@ -72,8 +72,9 @@ class Gamers:
 
 
 class Game(Gamers):
-    def __init__(self, name, surname):
+    def __init__(self, name, surname, complexity: int):
         super().__init__(name, surname)
+        self.complexity = 10 * abs(complexity)
         self.__line = 3
         self.__column = 5
         self.__max_column = 9
@@ -110,17 +111,21 @@ class Game(Gamers):
                     line[line.index(barrel)] = '--'
                     break
                 elif (line.count(barrel) > 0 and answer == 'n') or (line.count(barrel) == 0 and answer == 'y'):
-                    print(f'{self.ful_name()}, lost!')
+                    print(f'{self.ful_name()}, lose!')
                     leave = True
                     break
+
+            if leave:
+                break
+
+            if self.complexity != 100 and random.randint(0, self.complexity) == 0:
+                print(f'{self.ful_name()}, win. PC, lose.')
+                break
 
             for line in self.__pc_cart:
                 if line.count(barrel) > 0:
                     line[line.index(barrel)] = '--'
                     break
-
-            if leave:
-                break
 
             pc_cart_el = []
             pc_cart_el = [pc_cart_el + [i for i in line if i not in ['', '--']] for line in self.__pc_cart]
@@ -144,5 +149,5 @@ class Game(Gamers):
         return cart
 
 
-game = Game('Ivan', 'Ivanov')
+game = Game('Ivan', 'Ivanov', 0)
 game.start()
