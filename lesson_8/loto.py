@@ -67,7 +67,7 @@ class Gamers:
     def __str__(self):
         return f'{self._name} {self._surname}'
 
-    def ful_name(self):
+    def full_name(self):
         return f'{self._name} {self._surname}'
 
 
@@ -111,7 +111,7 @@ class Game(Gamers):
                     line[line.index(barrel)] = '--'
                     break
                 elif (line.count(barrel) > 0 and answer == 'n') or (line.count(barrel) == 0 and answer == 'y'):
-                    print(f'{self.ful_name()}, lose!')
+                    print(f'{self.full_name()}, lose!')
                     leave = True
                     break
 
@@ -119,7 +119,7 @@ class Game(Gamers):
                 break
 
             if self.complexity != 100 and random.randint(0, self.complexity) == 0:
-                print(f'{self.ful_name()}, win. PC, lose.')
+                print(f'{self.full_name()}, win. PC, lose.')
                 break
 
             for line in self.__pc_cart:
@@ -139,7 +139,7 @@ class Game(Gamers):
                 print('pc, win!')
                 break
             elif len(user_cart_el) == 0:
-                print(f'{self.ful_name()}, win')
+                print(f'{self.full_name()}, win')
                 break
 
     @staticmethod
