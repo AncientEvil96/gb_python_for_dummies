@@ -74,7 +74,7 @@ class Gamers:
 class Game(Gamers):
     def __init__(self, name, surname, complexity: int):
         super().__init__(name, surname)
-        self.complexity = 10 * abs(complexity)
+        self.complexity = 10 * abs(complexity) if complexity in [i for i in range(1, 11)] else 100
         self.__line = 3
         self.__column = 5
         self.__max_column = 9
